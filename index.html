@@ -25,9 +25,9 @@
     <script>
         window.onload = function() {
             const tg = window.Telegram.WebApp;
-            console.log("WebApp SDK is loaded", tg);  // Проверка загрузки SDK
-            tg.init();  // Инициализация WebApp
 
+            tg.MainButton.setText("Claim Gift");
+            tg.MainButton.show();
             const user = tg.initDataUnsafe;
             const userId = user.user.id;
             console.log("User ID:", userId);
