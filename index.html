@@ -5,33 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gift App</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script>
-        const tg = window.Telegram.WebApp;
-        console.log("WebApp SDK is loaded", tg);
-        tg.init();  // Инициализация WebApp
-
-        tg.MainButton.setText("Claim Gift");
-        tg.MainButton.show();
-        console.log("Button shown");
-
-    </script>
     <style>
-  body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-  }
-  h1 {
-    color: #333;
-  }
-  p {
-    color: #666;
-  }
-</style>
-
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+    </style>
 </head>
 <body>
     <h1>Welcome to the Gift App!</h1>
     <p>Click the button to claim your gift.</p>
+
+    <script>
+        window.onload = function() {
+            const tg = window.Telegram.WebApp;
+            console.log("WebApp SDK is loaded", tg);  // Проверка загрузки SDK
+            tg.init();  // Инициализация WebApp
+
+            tg.MainButton.setText("Claim Gift");
+            tg.MainButton.show();
+            console.log("Button shown after page load");
+        };
+    </script>
 </body>
 </html>
+
 
