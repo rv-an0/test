@@ -8,42 +8,32 @@
 </head>
 <body>
     <h1>Welcome to the Gift App!</h1>
-    <p>Click the button to claim your gift.</p>
+    <p>Click the button to display your user ID.</p>
 
-    <button id="get-chat-btn">Get Chat Info</button>
+    <!-- Кнопка для отображения ID пользователя -->
+    <button id="get-user-id-btn">Get User ID</button>
+
+    <p id="user-id"></p>  <!-- Место для отображения ID пользователя -->
 
     <script>
-        // Дожидаемся полной загрузки страницы и скриптов
+        // Убедимся, что WebApp инициализируется при загрузке страницы
         window.onload = function() {
-            const tg = window.Telegram.WebApp;  // Получаем доступ к WebApp
+            const tg = window.Telegram.WebApp;
 
-            // Проверяем, доступен ли WebApp
+            // Проверяем доступность SDK
             if (tg) {
-                // Отображаем кнопку
-                tg.MainButton.setText("Claim Gift");
-                tg.MainButton.show();
+                console.log('Telegram WebApp SDK is available.');
 
-                // Обработчик нажатия на кнопку
-                tg.MainButton.onClick(function() {
-                    alert("Gift claimed");
-                    tg.sendData("Gift claimed"); // Отправляем данные обратно в Telegram
-                });
+                // Обработчик для кнопки "Get User ID"
+                document.getElementById('get-user-id-btn').onclick = function() {
+                    // Получаем ID пользователя
+                    const userId = tg.initDataUnsafe.user.id;
 
-                // Кнопка для получения информации о чате
-                document.getElementById('get-chat-btn').onclick = function() {
-                    const chat = tg.WebApp.getChat();  // Получаем информацию о чате
+                    // Отображаем ID пользователя на странице
+                    document.getElementById('user-id').innerText = `Your User ID: ${userId}`;
 
-                    // Выводим информацию о чате в консоль
-                    console.log('Chat ID:', chat.id);
-                    console.log('Chat Type:', chat.type);
-                    console.log('Chat Title:', chat.title);
-                    console.log('Chat Username:', chat.username);
-                    console.log('Chat Photo URL:', chat.photo_url);
-                    console.log('Chat Invite Link:', chat.invite_link);
-                    console.log('Chat Description:', chat.description);
-
-                    // Выводим информацию на экран
-                    alert(`Chat ID: ${chat.id}\nChat Type: ${chat.type}\nChat Title: ${chat.title}`);
+                    // Логируем в консоль для отладки
+                    console.log("User ID:", userId);
                 };
             } else {
                 console.error('Telegram WebApp is not available.');
@@ -52,4 +42,5 @@
     </script>
 </body>
 </html>
+
 
