@@ -13,24 +13,43 @@
     <button id="get-chat-btn">Get Chat Info</button>
 
     <script>
-        const tg = window.Telegram.WebApp;
+        // Дожидаемся полной загрузки страницы и скриптов
+        window.onload = function() {
+            const tg = window.Telegram.WebApp;  // Получаем доступ к WebApp
 
-        // Отображение информации о чате
-        document.getElementById('get-chat-btn').onclick = function() {
-            const chat = tg.WebApp.getChat();  // Получаем информацию о чате
+            // Проверяем, доступен ли WebApp
+            if (tg) {
+                // Отображаем кнопку
+                tg.MainButton.setText("Claim Gift");
+                tg.MainButton.show();
 
-            // Выводим информацию о чате в консоль
-            console.log('Chat ID:', chat.id);
-            console.log('Chat Type:', chat.type);
-            console.log('Chat Title:', chat.title);
-            console.log('Chat Username:', chat.username);
-            console.log('Chat Photo URL:', chat.photo_url);
-            console.log('Chat Invite Link:', chat.invite_link);
-            console.log('Chat Description:', chat.description);
+                // Обработчик нажатия на кнопку
+                tg.MainButton.onClick(function() {
+                    alert("Gift claimed");
+                    tg.sendData("Gift claimed"); // Отправляем данные обратно в Telegram
+                });
 
-            // Выводим информацию на экран
-            alert(`Chat ID: ${chat.id}\nChat Type: ${chat.type}\nChat Title: ${chat.title}`);
+                // Кнопка для получения информации о чате
+                document.getElementById('get-chat-btn').onclick = function() {
+                    const chat = tg.WebApp.getChat();  // Получаем информацию о чате
+
+                    // Выводим информацию о чате в консоль
+                    console.log('Chat ID:', chat.id);
+                    console.log('Chat Type:', chat.type);
+                    console.log('Chat Title:', chat.title);
+                    console.log('Chat Username:', chat.username);
+                    console.log('Chat Photo URL:', chat.photo_url);
+                    console.log('Chat Invite Link:', chat.invite_link);
+                    console.log('Chat Description:', chat.description);
+
+                    // Выводим информацию на экран
+                    alert(`Chat ID: ${chat.id}\nChat Type: ${chat.type}\nChat Title: ${chat.title}`);
+                };
+            } else {
+                console.error('Telegram WebApp is not available.');
+            }
         };
     </script>
 </body>
 </html>
+
