@@ -6,14 +6,24 @@
     <title>Gift App</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  h1 {
+    color: #333;
+  }
+  p {
+    color: #666;
+  }
+</style>
 <body>
     <h1>Welcome to the Gift App!</h1>
-    <p>Click the button to display your user ID.</p>
+    <p>Your user ID will be displayed below:</p>
 
-    <!-- Кнопка для отображения ID пользователя -->
-    <button id="get-user-id-btn">Get User ID</button>
-
-    <p id="user-id"></p>  <!-- Место для отображения ID пользователя -->
+    <!-- Место для отображения ID пользователя -->
+    <p id="user-id">Loading...</p>  
 
     <script>
         // Убедимся, что WebApp инициализируется при загрузке страницы
@@ -24,17 +34,17 @@
             if (tg) {
                 console.log('Telegram WebApp SDK is available.');
 
-                // Обработчик для кнопки "Get User ID"
-                document.getElementById('get-user-id-btn').onclick = function() {
-                    // Получаем ID пользователя
-                    const userId = tg.initDataUnsafe.user.id;
+                // Инициализируем WebApp
+                tg.init();  // Инициализация WebApp
 
-                    // Отображаем ID пользователя на странице
-                    document.getElementById('user-id').innerText = `Your User ID: ${userId}`;
+                // Получаем ID пользователя
+                const userId = tg.initDataUnsafe.user.id;
 
-                    // Логируем в консоль для отладки
-                    console.log("User ID:", userId);
-                };
+                // Отображаем ID пользователя на странице
+                document.getElementById('user-id').innerText = `Your User ID: ${userId}`;
+
+                // Логируем в консоль для отладки
+                console.log("User ID:", userId);
             } else {
                 console.error('Telegram WebApp is not available.');
             }
@@ -42,5 +52,6 @@
     </script>
 </body>
 </html>
+
 
 
