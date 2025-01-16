@@ -5,26 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gift App</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #666;
-        }
-    </style>
 </head>
 <body>
     <h1>Welcome to the Gift App!</h1>
     <p>Click the button to claim your gift.</p>
 
+    <button id="get-chat-btn">Get Chat Info</button>
+
     <script>
-        window.onload = function() {
-            const tg = window.Telegram.WebApp;
+        const tg = window.Telegram.WebApp;
+
         // Отображение информации о чате
         document.getElementById('get-chat-btn').onclick = function() {
             const chat = tg.WebApp.getChat();  // Получаем информацию о чате
@@ -40,10 +30,7 @@
 
             // Выводим информацию на экран
             alert(`Chat ID: ${chat.id}\nChat Type: ${chat.type}\nChat Title: ${chat.title}`);
-
         };
     </script>
 </body>
 </html>
-
-
