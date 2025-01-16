@@ -28,9 +28,10 @@
             console.log("WebApp SDK is loaded", tg);  // Проверка загрузки SDK
             tg.init();  // Инициализация WebApp
 
-            tg.MainButton.setText("Claim Gift");
-            tg.MainButton.show();
-            console.log("Button shown after page load");
+            const user = tg.initDataUnsafe;
+            const userId = user.user.id;
+            console.log("User ID:", userId);
+
         };
     </script>
 </body>
