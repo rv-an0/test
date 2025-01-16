@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple WebApp</title>
+    <title>Gift App</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.init();  // Инициализация WebApp
+
+        // Показываем кнопку с текстом
+        tg.MainButton.setText("Claim Gift");
+        tg.MainButton.show();
+    </script>
 </head>
 <body>
-    <h1>Welcome to the Simple WebApp!</h1>
-    <p>This is a simple static page for testing WebApp buttons in Telegram.</p>
-    <button onclick="alert('Button clicked!')">Click me</button>
-    <script>
-        Telegram.WebApp.onEvent('mainButtonClicked', function() {
-            alert('Main button clicked!');
-        });
-        Telegram.WebApp.ready();
-    </script>
+    <h1>Welcome to the Gift App!</h1>
+    <p>Click the button to claim your gift.</p>
 </body>
 </html>
+
