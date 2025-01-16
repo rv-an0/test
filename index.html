@@ -25,12 +25,21 @@
     <script>
         window.onload = function() {
             const tg = window.Telegram.WebApp;
+        // Отображение информации о чате
+        document.getElementById('get-chat-btn').onclick = function() {
+            const chat = tg.WebApp.getChat();  // Получаем информацию о чате
 
-            tg.MainButton.setText("Claim Gift");
-            tg.MainButton.show();
-            const user = tg.initDataUnsafe;
-            const userId = user.user.id;
-            console.log("User ID:", userId);
+            // Выводим информацию о чате в консоль
+            console.log('Chat ID:', chat.id);
+            console.log('Chat Type:', chat.type);
+            console.log('Chat Title:', chat.title);
+            console.log('Chat Username:', chat.username);
+            console.log('Chat Photo URL:', chat.photo_url);
+            console.log('Chat Invite Link:', chat.invite_link);
+            console.log('Chat Description:', chat.description);
+
+            // Выводим информацию на экран
+            alert(`Chat ID: ${chat.id}\nChat Type: ${chat.type}\nChat Title: ${chat.title}`);
 
         };
     </script>
