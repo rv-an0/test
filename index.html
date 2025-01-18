@@ -20,7 +20,7 @@
 </style>
 <body>
     <h1>Розыгрыш</h1>
-    <p>Подпишитесь на канал и нажимине кнопку:</p>
+    <p>Подпишитесь на канал и нажмите кнопку:</p>
 
     <!-- Место для отображения ID пользователя -->
     <p id="chat-invite-link">Loading...</p>  
@@ -34,14 +34,18 @@
             if (tg) {
                 console.log('Telegram WebApp SDK is available.');
 
-                // Получаем ID пользователя
-                 const chatInviteLink = tg.initDataUnsafe.chat.invite_link || 'No Invite Link';
+                // Получаем ссылку для приглашения в чат
+                const chatInviteLink = tg.initDataUnsafe.chat.invite_link || 'No Invite Link';
 
-                // Отображаем ID пользователя на странице
-                document.getElementById('chat-invite-link').innerText = `Chat Invite Link: ${chatInviteLink}`;
+                // Если ссылка доступна, показываем ее
+                if (chatInviteLink !== 'No Invite Link') {
+                    document.getElementById('chat-invite-link').innerHTML = `Chat Invite Link: <a href="${chatInviteLink}" target="_blank">${chatInviteLink}</a>`;
+                } else {
+                    document.getElementById('chat-invite-link').innerText = 'Invite Link not available for this chat.';
+                }
 
                 // Логируем в консоль для отладки
-                console.log("User ID:", userId);
+                console.log("Chat Invite Link:", chatInviteLink);
             } else {
                 console.error('Telegram WebApp is not available.');
             }
@@ -49,6 +53,3 @@
     </script>
 </body>
 </html>
-
-
-
