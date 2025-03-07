@@ -28,11 +28,7 @@
 
             const tg = window.Telegram.WebApp;
 
-            tg.MainButton.setParams({
-                text: "Принять участие",      // Текст на кнопке
-                color: "primary",       // Цвет кнопки
-                has_shine_effect: true 
-            });
+            tg.MainButton.setText("Claim Gift");
 
             tg.MainButton.show();
             // Устанавливаем обработчик события при нажатии на кнопку
