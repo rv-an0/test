@@ -20,44 +20,38 @@
 </style>
 <body>
     <h1>Розыгрыш</h1>
-    <p>Подпишитесь на канал и нажмите кнопку:</p>
 
-    <!-- Место для отображения ID пользователя -->
-    <p id="chat-invite-link">Loading...</p>  
+   <script>
 
-    <script>
-        // Убедимся, что WebApp инициализируется при загрузке страницы
+
         window.onload = function() {
+
             const tg = window.Telegram.WebApp;
 
-            // Проверяем доступность SDK
-            if (tg) {
-                console.log('Telegram WebApp SDK is available.');
 
-                // Получаем ссылку для приглашения в чат
-                const chatInviteLink = tg.initDataUnsafe.chat.invite_link || 'No Invite Link';
+            console.log("WebApp SDK is loaded", tg);  // Проверка загрузки SDK
 
-                // Инициализируем основную кнопку
-                tg.MainButton.setParams({
-                    text: "Получить ссылку" // Текст на кнопке
-                });
 
-                // Показываем кнопку
-                tg.MainButton.show();
+            tg.init();  // Инициализация WebApp
 
-                // Добавляем обработчик нажатия на кнопку
-                tg.MainButton.onClick(function() {
-                    // Если ссылка доступна, показываем её
-                    if (chatInviteLink !== 'No Invite Link') {
-                        document.getElementById('chat-invite-link').innerHTML = `Chat Invite Link: <a href="${chatInviteLink}" target="_blank">${chatInviteLink}</a>`;
-                    } else {
-                        document.getElementById('chat-invite-link').innerText = 'Invite Link not available for this chat.';
-                    }
-                });
-            } else {
-                console.error('Telegram WebApp is not available.');
-            }
+
+
+
+            tg.MainButton.setText("Claim Gift");
+
+
+            tg.MainButton.show();
+
+            const user = tg.initDataUnsafe;
+
+            const userId = user.user.id;
+
+            console.log("User ID:", userId);
+
+
+
         };
+
     </script>
 </body>
 </html>
