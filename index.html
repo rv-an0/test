@@ -28,17 +28,17 @@
 
             const tg = window.Telegram.WebApp;
 
-            tg.MainButton.setText("Claim Gift");
-
+            tg.MainButton.setParams({
+                text: "Принять участие",      // Текст на кнопке
+                color: "primary",       // Цвет кнопки
+                has_shine_effect: true 
+            });
 
             tg.MainButton.show();
-
-            const user = tg.initDataUnsafe;
-
-            const userId = user.user.id;
-
-            console.log("User ID:", userId);
-
+            // Устанавливаем обработчик события при нажатии на кнопку
+            tg.MainButton.onClick(function() {
+                alert("Вы нажали на кнопку!");
+            });
 
 
         };
