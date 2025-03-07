@@ -29,7 +29,11 @@
             const tg = window.Telegram.WebApp;
 
                             // Настроить MainButton
-                tg.MainButton.setParams({"color": "#E0FFFF"});
+                tg.MainButton.setParams({
+                    "color": "#D62FDB",
+                    "text": "Принять участие",
+                    "hasShineEffect": "true" 
+                });
 
             tg.MainButton.show();
             // Устанавливаем обработчик события при нажатии на кнопку
