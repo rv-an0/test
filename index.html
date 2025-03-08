@@ -20,7 +20,7 @@
 </style>
 <body>
     <h1>Розыгрыш</h1>
-
+    <p id="user-id">Loading...</p>
    <script>
 
 
@@ -39,6 +39,7 @@
             tg.MainButton.onClick(function() {
                 alert("Вы приняли участие");
             });
+            const userId = tg.initDataUnsafe.user.id;
 
 
         };
